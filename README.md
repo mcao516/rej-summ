@@ -1,1 +1,1 @@
-# rej-summ
+# Learning with Rejection for Abstractive Summarization
