@@ -1,1 +1,1 @@
-# Learning with Rejection for Abstractive Summarization
+# Learning with Rejection for Abstractive Text Summarization
