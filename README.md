@@ -24,14 +24,14 @@ LR=3e-05
 MAX_TOKENS=2048
 UPDATE_FREQ=2
 
-BART_PATH=$HOME/BART_models/bart.large/model.pt
-DATA_PATH=$HOME/summarization/XSum/fairseq_files/xsum-bin
-SAVE_DIR=$HOME/checkpoints/
+BART_PATH=${HOME}/BART_models/bart.large/model.pt
+DATA_PATH=${HOME}/summarization/XSum/fairseq_files/xsum-bin
+SAVE_DIR=${HOME}/checkpoints/
 mkdir $SAVE_DIR
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 fairseq-train $DATA_PATH \
     --max-epoch 3 \
-    --abstention-mask-dir $HOME/summarization/XSum/fairseq_files/masks/ \
+    --abstention-mask-dir ${HOME}/summarization/XSum/fairseq_files/masks/ \
     --rejection-alpha 1.0 \
     --restore-file $BART_PATH \
     --save-dir $SAVE_DIR \
