@@ -1,5 +1,5 @@
 # Learning with Rejection for Abstractive Text Summarization
-This directory contains code necessary to replicate the training and evaluation for our EMNLP 2022 paper "Learning with Rejection for Abstractive Text Summarization" by Meng Cao, Yue Dong, Jingyi He and Jackie Chi Kit Cheung.
+This directory contains code necessary to replicate the training and evaluation for our EMNLP 2022 paper "Learning with Rejection for Abstractive Text Summarization" by [Meng Cao](https://mcao516.github.io/), [Yue Dong](https://yuedongcs.github.io/), [Jingyi He](https://kylie-box.github.io/) and [Jackie Chi Kit Cheung](https://www.cs.mcgill.ca/~jcheung/).
 
 # Requirements and Installation
 Our implementation is heavily based on facebook's [fairseq](https://github.com/facebookresearch/fairseq) library.
