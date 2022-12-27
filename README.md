@@ -26,7 +26,7 @@ UPDATE_FREQ=2
 
 BART_PATH=${HOME}/BART_models/bart.large/model.pt
 DATA_PATH=${HOME}/summarization/XSum/fairseq_files/xsum-bin
-SAVE_DIR=${HOME}/checkpoints/
+SAVE_DIR=checkpoints/
 mkdir $SAVE_DIR
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 fairseq-train $DATA_PATH \
