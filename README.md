@@ -1,9 +1,9 @@
 # Learning with Rejection for Abstractive Text Summarization
 This directory contains code necessary to replicate the training and evaluation for our EMNLP 2022 paper "Learning with Rejection for Abstractive Text Summarization" by [Meng Cao](https://mcao516.github.io/), [Yue Dong](https://yuedongcs.github.io/), [Jingyi He](https://kylie-box.github.io/) and [Jackie Chi Kit Cheung](https://www.cs.mcgill.ca/~jcheung/).
 
-# Requirements and Installation
-Our implementation is heavily based on facebook's [fairseq](https://github.com/facebookresearch/fairseq) library.
+Our implementation is heavily based on facebook's [fairseq](https://github.com/facebookresearch/fairseq) library. The core implementation of the algorithm is in the ```fairseq/criterions/label_smoothed_cross_entropy_with_rejection.py``` file
 
+# Requirements and Installation
 * [PyTorch](http://pytorch.org/) version >= 1.10.0
 * Python version >= 3.8
 * For training new models, you'll also need an NVIDIA GPU and [NCCL](https://github.com/NVIDIA/nccl)
