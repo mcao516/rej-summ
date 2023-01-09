@@ -34,7 +34,7 @@ mkdir $SAVE_DIR
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 fairseq-train $DATA_PATH \
     --max-epoch 3 \
-    --abstention-mask-dir ${HOME}/summarization/XSum/fairseq_files/masks/ \
+    --abstention-mask-dir ${HOME}/summarization/XSum/masks/ \
     --rejection-alpha 1.0 \
     --restore-file $BART_PATH \
     --save-dir $SAVE_DIR \
