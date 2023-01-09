@@ -1,4 +1,5 @@
 preprocessing.ipynb
+masks/
 hypos/
 *.sh
 

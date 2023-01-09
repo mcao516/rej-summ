@@ -15,7 +15,10 @@ cd rej-summ
 pip install --editable ./
 ```
 
-# Training
+# Running the Code
+To reproduce the results in the paper, you can download the preprocessed XSum dataset from google drive using this [link](https://drive.google.com/file/d/1zZrhxOAgD2qc4dMrFpXrYxHm-XC85yYY/view?usp=sharing).
+
+## Training
 
 ``` bash
 TOTAL_NUM_UPDATES=20000
@@ -25,7 +28,7 @@ MAX_TOKENS=2048
 UPDATE_FREQ=2
 
 BART_PATH=${HOME}/BART_models/bart.large/model.pt
-DATA_PATH=${HOME}/summarization/XSum/fairseq_files/xsum-bin
+DATA_PATH=${HOME}/summarization/XSum/xsum-bin
 SAVE_DIR=checkpoints/
 mkdir $SAVE_DIR
 
@@ -55,6 +58,29 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 fairseq-train $DATA_PATH \
     --skip-invalid-size-inputs-valid-test \
     --find-unused-parameters;
 ```
+
+## Inference
+```bash
+DATA_PATH=${HOME}/summarization/XSum/xsum-bin
+SRC_PATH=$HOME/summarization/XSum/test.source
+OUTPUT_PATH=hypos/output.hypo
+
+CUDA_VISIBLE_DEVICES=0 python examples/bart/summarize.py \
+    --model-dir checkpoints/ \
+    --model-file checkpoint_best.pt \
+    --dict-dir $DATA_PATH \
+    --src $SRC_PATH \
+    --out $OUTPUT_PATH \
+    --beam_size 6 \
+    --bsz 8 \
+    --unnormalized \
+    --lenpen 1.0 \
+    --rejpen 2.0 \
+    --xsum-kwargs;
+```
+
+# Running the Code on Your Own Data
+
 
 # License
 
