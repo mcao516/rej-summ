@@ -80,7 +80,7 @@ CUDA_VISIBLE_DEVICES=0 python examples/bart/summarize.py \
 ```
 
 # Running the Code on Your Own Data
-To run the code on your own data, you simply need to run ```preprocessing.py``` to generate the mask file that contains entity position information. Make sure the format of your data is one document/summary per line.
+To run the code on your own data, you simply need to run ```preprocessing.py``` to generate a mask file that contains the entity position information. Make sure the format of your data is one document/summary per line.
 
 # License
 
