@@ -6,6 +6,8 @@ Our implementation is heavily based on facebook's [fairseq](https://github.com/f
 # Requirements and Installation
 * [PyTorch](http://pytorch.org/) version >= 1.10.0
 * Python version >= 3.8
+* [spaCy](https://spacy.io/usage) >= 3.4.4
+* [rouge-score](https://pypi.org/project/rouge-score/)
 * For training new models, you'll also need an NVIDIA GPU and [NCCL](https://github.com/NVIDIA/nccl)
 * To install and develop locally:
 
