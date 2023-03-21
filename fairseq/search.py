@@ -134,6 +134,7 @@ class BeamSearch(Search):
                 lprobs[:, :, self.unk] = -math.inf
                 lprobs = lprobs + scores[:, :, step - 1].unsqueeze(-1) - rpenalty * rej_lambda
             else:
+                lprobs[:, :, self.unk] = -math.inf
                 lprobs = lprobs + scores[:, :, step - 1].unsqueeze(-1)
 
         top_prediction = torch.topk(
