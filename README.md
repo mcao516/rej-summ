@@ -1,11 +1,13 @@
 # Learning with Rejection for Abstractive Text Summarization
-This directory contains code necessary to replicate the training and evaluation for our EMNLP 2022 paper "Learning with Rejection for Abstractive Text Summarization" by [Meng Cao](https://mcao516.github.io/), [Yue Dong](https://yuedongcs.github.io/), [Jingyi He](https://kylie-box.github.io/) and [Jackie Chi Kit Cheung](https://www.cs.mcgill.ca/~jcheung/).
+This directory contains code necessary to replicate the training and evaluation for our EMNLP 2022 paper "[Learning with Rejection for Abstractive Text Summarization](https://aclanthology.org/2022.emnlp-main.663/)" by [Meng Cao](https://mcao516.github.io/), [Yue Dong](https://yuedongcs.github.io/), [Jingyi He](https://kylie-box.github.io/) and [Jackie Chi Kit Cheung](https://www.cs.mcgill.ca/~jcheung/).
 
 Our implementation is heavily based on facebook's [fairseq](https://github.com/facebookresearch/fairseq) library. The core implementation of the algorithm is in the ```fairseq/criterions/label_smoothed_cross_entropy_with_rejection.py``` file.
 
 # Requirements and Installation
 * [PyTorch](http://pytorch.org/) version >= 1.10.0
 * Python version >= 3.8
+* [spaCy](https://spacy.io/usage) >= 3.4.4
+* [rouge-score](https://pypi.org/project/rouge-score/)
 * For training new models, you'll also need an NVIDIA GPU and [NCCL](https://github.com/NVIDIA/nccl)
 * To install and develop locally:
 
@@ -16,7 +18,9 @@ pip install --editable ./
 ```
 
 # Running the Code
-To reproduce the results in the paper, you can download the preprocessed XSum dataset from google drive using this [link](https://drive.google.com/file/d/1zZrhxOAgD2qc4dMrFpXrYxHm-XC85yYY/view?usp=sharing).
+To reproduce the results in the paper, you can download the pre-processed XSum dataset from google drive using this [link](https://drive.google.com/file/d/1zZrhxOAgD2qc4dMrFpXrYxHm-XC85yYY/view?usp=sharing). Besides the document and reference files, the pre-processed dataset contains mask files that mark the position of entities in the sentence. 
+
+We need the entity position information since we only apply rejection loss on entities. This is because the uncertainty over tokens contains not only uncertainty about the factuality of the generated information, but also uncertainty about the different possible paraphrasing of the summary. For entities, it is mainly the former.
 
 ## Training
 
@@ -34,7 +38,7 @@ mkdir $SAVE_DIR
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 fairseq-train $DATA_PATH \
     --max-epoch 3 \
-    --abstention-mask-dir ${HOME}/summarization/XSum/fairseq_files/masks/ \
+    --abstention-mask-dir ${HOME}/summarization/XSum/masks/ \
     --rejection-alpha 1.0 \
     --restore-file $BART_PATH \
     --save-dir $SAVE_DIR \
@@ -80,7 +84,7 @@ CUDA_VISIBLE_DEVICES=0 python examples/bart/summarize.py \
 ```
 
 # Running the Code on Your Own Data
-
+To run the code on your own data, first make sure that the data is formatted as one document/summary per line. Then, you need to run ``preprocessing.py`` to generate a mask file that contains the entity position information.
 
 # License
 
@@ -91,11 +95,20 @@ The license applies to the pre-trained models as well.
 
 Please cite as:
 
-<!-- ``` bibtex
-@inproceedings{ott2019fairseq,
-  title = {fairseq: A Fast, Extensible Toolkit for Sequence Modeling},
-  author = {Myle Ott and Sergey Edunov and Alexei Baevski and Angela Fan and Sam Gross and Nathan Ng and David Grangier and Michael Auli},
-  booktitle = {Proceedings of NAACL-HLT 2019: Demonstrations},
-  year = {2019},
+``` bibtex
+@inproceedings{cao-etal-2022-learning,
+    title = "Learning with Rejection for Abstractive Text Summarization",
+    author = "Cao, Meng  and
+      Dong, Yue  and
+      He, Jingyi  and
+      Cheung, Jackie Chi Kit",
+    booktitle = "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.emnlp-main.663",
+    pages = "9768--9780",
+    abstract = "State-of-the-art abstractive summarization systems frequently hallucinate content that is not supported by the source document, mainly due to noise in the training dataset.Existing methods opt to drop the noisy samples or tokens from the training set entirely, reducing the effective training set size and creating an artificial propensity to copy words from the source. In this work, we propose a training objective for abstractive summarization based on rejection learning, in which the model learns whether or not to reject potentially noisy tokens. We further propose a regularized decoding objective that penalizes non-factual candidate summaries during inference by using the rejection probability learned during training.We show that our method considerably improves the factuality of generated summaries in automatic and human evaluations when compared to five baseline models, and that it does so while increasing the abstractiveness of the generated summaries.",
 }
-``` -->
+```
