@@ -84,7 +84,7 @@ CUDA_VISIBLE_DEVICES=0 python examples/bart/summarize.py \
 ```
 
 # Running the Code on Your Own Data
-To run the code on your own data, first make sure that the data is formatted as one document/summary per line. Then, you need to run ``preprocessing.py`` to generate a mask file that contains the entity position information.
+To run the code on your own data, first make sure that the data is formatted as one document/summary per line. Then, binarize your data following the steps here: https://github.com/mcao516/rej-summ/tree/main/examples/bart. You also need to run ``preprocessing.py`` to generate a mask file that contains the entity position information.
 
 # License
 
