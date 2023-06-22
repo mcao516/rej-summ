@@ -18,7 +18,7 @@ pip install --editable ./
 ```
 
 # Running the Code
-To reproduce the results in the paper, you can download the pre-processed XSum dataset from google drive using this [link](https://drive.google.com/file/d/1zZrhxOAgD2qc4dMrFpXrYxHm-XC85yYY/view?usp=sharing). Besides the document and reference files, the pre-processed dataset contains mask files that mark the position of entities in the sentence. 
+To reproduce the results in the paper, you can download the pre-processed XSum dataset from google drive using this [link](https://drive.google.com/file/d/1KoC4gIGi883oBaq4Rjv9M8-wNjLJzauD/view?usp=sharing). Besides the document and reference files, the pre-processed dataset contains mask files that mark the position of entities in the sentence. 
 
 We need the entity position information since we only apply rejection loss on entities. This is because the uncertainty over tokens contains not only uncertainty about the factuality of the generated information, but also uncertainty about the different possible paraphrasing of the summary. For entities, it is mainly the former.
 
